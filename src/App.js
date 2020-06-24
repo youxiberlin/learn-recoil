@@ -18,6 +18,7 @@ const CharacterCounter = () => {
     <div>
       <TextInput />
       <CharacterCount />
+      <Uppercase />
     </div>
   );
 };
@@ -42,7 +43,6 @@ const charCountState = selector({
   key: 'charCountState',
   get: ({get}) => {
     const text = get(textState);
-
     return text.length;
   },
 });
@@ -50,6 +50,23 @@ const charCountState = selector({
 const CharacterCount = () => {
   const count = useRecoilValue(charCountState);
   return <>Character Count: {count}</>;
+}
+
+const uppercaseState = selector({
+  key: 'uppercaseState',
+  get: ({get}) => {
+    const text = get(textState);
+    return text.toUpperCase();
+  }
+});
+
+const Uppercase = () => {
+  const uppercase = useRecoilValue(uppercaseState);
+  return (
+      <div>
+        Uppercase: {uppercase}
+      </div>
+    );
 }
 
 function App() {
