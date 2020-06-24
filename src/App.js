@@ -17,6 +17,7 @@ const CharacterCounter = () => {
   return (
     <div>
       <TextInput />
+      <CharacterCount />
     </div>
   );
 };
@@ -32,10 +33,24 @@ const TextInput = () => {
     <div>
       <input type="text" value={text} onChange={onChange} />
       <br />
-      text input
+        Echo: {text}
     </div>
   );
 };
+
+const charCountState = selector({
+  key: 'charCountState',
+  get: ({get}) => {
+    const text = get(textState);
+
+    return text.length;
+  },
+});
+
+const CharacterCount = () => {
+  const count = useRecoilValue(charCountState);
+  return <>Character Count: {count}</>;
+}
 
 function App() {
   return (
