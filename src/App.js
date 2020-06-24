@@ -14,16 +14,24 @@ const textState = atom({
 });
 
 const CharacterCounter = () => {
-  return <div>character counter: <TextInput /></div>	
+  return (
+    <div>
+      <TextInput />
+    </div>
+  );
 };
 
 const TextInput = () => {
   const [text, setText] = useRecoilState(textState);
-
-  const onChange = e => setText(e.target.value);
+  const onChange = e => {
+    // console.log('target value: ', e.target.value);
+    setText(e.target.value)
+  };
 
   return (
     <div>
+      <input type="text" value={text} onChange={onChange} />
+      <br />
       text input
     </div>
   );
